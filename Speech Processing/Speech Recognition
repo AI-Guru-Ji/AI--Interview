@@ -1,0 +1,391 @@
+# Challenges:
+- Estimation of formant frequency for low level voiced sound and defining formants for unvoiced and silence region.
+- Distinguish weak unvoiced sound from silence.
+- Distinguish weak voiced sound from unvoice.
+- Boundary detection
+- Variablity of prounciation (variablity in formant freq, Male & female vocal tract difference, Overlap between vowels, articulating style)
+- Defining shape of vocal tract and lip i.e. vocal tract modelling and lip radiation modelling.
+- Study of basilar membrane is an open research.
+
+# Speech Processing 
+* In natural environment, anything which vibrate create an sound.
+* Sound wave move 340m/s in air, 1500 m/s in water, 3500 m/s in bone and upto 6000 m/s in steel.
+
+- Common Sounds:
+1. Pure tone: single freq.
+2. White Noise: a random signal containing an equal power of multiple frequencies. 
+3. Music: fundamental freq combined with harmonics
+4. Speech: Spectrum of frequencies, composed of thousands of different frequencies
+
+- Speech Anatomy (Human Speech Production System) (A tube closed at one end) (Source-Filter Model)
+Lungs, Trachea, Vocal chords (vocal folds), Larynx (Voice box or Glottis, Act as LPF), Vocal Tract (Resonator, Filter, Voiced  speech {All pole model}, Unvoiced  speech {pole-zero model}), Pharynx, Velum, Oral and Nosal Cavity, Lip Radiation (Act as HPF) .
+-Respirartion, Phonation, Articulation
+-Quasi-periodic
+
+* Vocal tract length L= lambda/4, resonance_freq= v/lamda
+
+- Human Auditory System: 
+Ear converts sound wave into electrical impulse which interpreted by brain. Work as a spectrum analyzer.
+Ear Parts: 
+1. Outer Ear (Eardrum) 
+2. Middle Ear (Ossicles: Maleus {attach to eardrum , transfer the vibration to incus}, Incus, Stapes{ act as piston, produce 22 times greater pressure than original}) 
+3. Inner ear: Cochlea {distinguish various sound freq, spiral shape, contains billions hair cells, basilar membrane, freq. distribution from higher to lower}
+
+* Speech is the ability to express the thoughts and feelings.
+- Human Audible Range (20Hz-20KHz)
+- Audio Vs Voice Vs Sound Vs Noise
+- Pitch Vs Frequence Vs Tone
+- Stationary Vs Non-Stationary
+		- Stationary: A stationary signal is denoted by a sine-wave equation, which has a constant time period and frequency. eg: Examples for stationary signals include white noise, single tone sine-wave with constant frequency and multitone sinewave with a constant frequency.
+
+		- Non-Stationary: non-stationary signal is the kind of signal where time period, frequency are not constant but variable. eg:multitone sine wave with varied frequency, speech signal: there would be multiple sets of frequency contents, and these contents are likely to change dynamically with respect to time. (Due to non-stationary nature of speech we do short time analysis)
+
+* Noise doesn't have regular oscillation i.e. recognizable pitch. (Depend on listners)
+
+# Parameters:
+- Frequncy (No. of cycles {or beats} per second) 
+- Sampling frequency/ Sample rate (samples/sec) [44.1KHz, 22.5KHz, 16KHz, 8KHz]
+- Audio channel (Stereo, Mono)
+- Bit length (16bit/sample, 32bit/sample)
+- Bit-rate (bit_length* SR) (256Kbps, 512Kbps)
+- Audio format/ Storage (.mp3, .wav, .alac, .flac)
+- Time period (time to complete one cycle)
+- Bandwidth (Speech: 50-10KHz, Music 10-20KHz): difference in the upper and lower freq components, amount of data being transmitted per second.
+- Decible(dB) : sound level measure (>85 dB can damage the ear)
+- Fundamental frequency: The freq. at which vocal chords vibrate.
+   Male  : 85 -185  Hz
+   Female: 165-250 Hz
+   Child : 250-750 Hz
+- Telephony voice freq. (300Hz-3000Hz)
+
+* Is speech signal periodic? If, yes then please tell me how to calculate the time period of speech signal ?
+Not absolutely periodic, it is quasi-periodic. The result of periodic vibration of vocal cords when voiced speech is produced. Periodicity determines the fundamental frequency. For voiced sounds, pitch can be estimated by autocorrelation method. The second highest peak is the pitch.
+
+* In frequency response function how do we find fundamental freq. ?
+In Magnitude plot we look for max peak at freq. and we also look for peak in phase plot , 180 degree change in phase at same frequency.
+
+------------------------------------------------------------------
+“What’s the difference between f0, harmonics, and formant frequency?”
+
+- Fundamental frequency/Pitch:f0 Source side
+f0 is a property of the source and is perceived by the ear as pitch. The f0 of the adult human voice ranges from 100-300 Hz.
+Pitch is the fundamental frequency of vibration of the vocal folds, which are present at the top of one's trachea. They vibrate quasi-periodically only for voiced phonemes, namely vowel, semivowel and nasal sounds. So, for unvoiced stops such as /p/, /k/, /t/, /th/, /ch/ and unvoiced fricatives such as /f/, /s/, etc. there is nothing called pitch. Pitch can be estimated by quantifying the period (using autocorrelation, say) or measuring the harmonics.
+The fundamental frequency, or f0, is the first harmonic.
+
+-Pitch varies with people. However, this has little role in recognizing what he/she said. F0 is related to the pitch. It provides no value in speech recognition and should be removed.
+
+- In case of voiced sounds, the air from the lungs vibrate the vocal folds. The fundamental frequency of vibrating vocal folds is the pitch. Now, the vocal fold vibration forces the vocal tract to vibrate as well. This forced vibration is resonance otherwise called as formant frequency. Format frequency can be estimated by homomorphic filtering (In this we can separate the source of vibration(vocal folds) and vocal tract vibration).
+
+* Harmonics: The vocal signal is a complex periodic wave made up of several simple periodic waves. Each of the simple waves is called a harmonic. The fundamental frequency, or f0, is the first harmonic, or H1. There is a harmonic at each interval of the f0 up to infinity. Vocal fold vibration produces many harmonics above f0, all the way up to 5000Hz in the adult human vocal tract. These harmonics decrease in amplitude as the frequency increases. Begin with the fundamental frequency. The formula for finding the different harmonics is:
+
+H(k) = k * f0
+
+Where k is the harmonic you’re trying to find and f0 is your fundamental  frequency. So, if you’re trying to find the second harmonic, and your fundamental frequency is 112 Hz, H2= 2 * 112, or 224 Hz.
+
+- Harmonics Note: whose frequency is an integral (whole-number) multiple of the frequency of fundamental frequency. In case of human speech, it is odd multiple of formant frequnecy (beacuse one end open tube). It come from vocal chords in speech generation.
+
+- Resonance frequency:
+Resonance, An object free to vibrate tends to do so at a specific rate called the object's natural, or resonant, frequency. Such an object will vibrate strongly when it is subjected to vibrations or regular impulses at a frequency equal to or very close to its natural frequency.
+* eg: The easiest way to find the resonant frequencies is to place the object next to a speaker and also place a microphone attached to an oscilloscope next to the object.
+Tools: Prosig P8000 data acquisition system, DATS proffesional signal software.
+
+- Formant frequency:(Resonant frequency) Filter side 
+Resonances of the vocal tract are called formants.
+The resonant freuency at which most acoustic energy passed from source (vocal-tract) to output (lip).
+The formant frequencies are due to the frequency shaping of the signal from the vocal folds by the vocal tract.
+Vocal tract is everything from nasal tract, tongue, teeth, lips, palate, etc. The particular configuration of the above organs (articulators) for every phoneme creates resonances at specific frequencies called formants. So, formants exist for both voiced and unvoiced sounds.
+
+-- Maximum 3 formant freq. are considered in speech because above these it is not audible (below 3500Hz, eg: Vowel "i" 3325 Hz for female)
+-- It is highly efficient ,compact representation of time varying characteristic of speech signal.
+-- Varies person to person
+-- It helps to distinguish the different sounds.
+-- It can be seen in wide band spectrogram where they are displayed as dark band with high energy.
+-- Formants reflect the vocal tract feature.
+-- Formant frequecies can be found by linear prediction analysis from the poles.
+-- Formant frequencies mainly vary due to the phoneme being articulated 
+
+
+* Why downsampling require ?
+Because speech signal have lots of redundency.
+Most of the vowel's formant freq. is in the range 3000-3500Hz. Maximum 3 formant freq. are considered in speech because above these it is not audible (below 3500Hz eg: Vowel "i" third formant 3325 Hz for female))
+
+* Why 8 KHz Sampling rate is acceptable in ASR ?
+because max formant frequency of vowel is around 3500Hz so as per Nyquist theory the SR is 2*max freq.
+
+
+# Effects
+1. Doppler Effect: moving sound source, intensity varies over distance
+2. Larsen Effect : source(loudspeaker) and receptor(microphone) place closely
+
+* How do we categorize audio features at various levels of abstraction?
+These broad categories cover mainly musical signals rather than audio in general: 
+
+- High-level: These are the abstract features that are understood and enjoyed by humans. These include instrumentation, key, chords, melody, harmony, rhythm, genre, mood, etc.
+- Mid-level: These are features we can perceive. These include pitch, beat-related descriptors, note onsets, fluctuation patterns, MFCCs, etc. We may say that these are aggregation of low-level features.
+- Low-level: These are statistical features that are extracted from the audio. These make sense to the machine, but not to humans. Examples include amplitude envelope, energy, spectral centroid, spectral flux, zero-crossing rate, etc.
+
+* Traditional Machine Learning approach considers all or most of the features from both time and frequency domain as inputs into the model. Features need to be hand-picked based on its effect on model performance. 
+
+* Deep Learning approach considers unstructured audio representations such as the spectrogram or MFCCs. It extracts the patterns on its own.
+
+
+# Feature Representation
+1. Temporal domain: not so much informative
+The temporal features (time domain features), which are simple to extract and have easy physical interpretation, like: the energy of signal, zero crossing rate, maximum amplitude, minimum energy, etc.
+
+2. Spectral Domain:
+The spectral features (frequency based features), which are obtained by converting the time based signal into the frequency domain using the Fourier Transform, like: fundamental frequency, frequency components, spectral flux, spectral density, spectral roll-off. These features can be used to identify the notes, pitch, rhythm, and melody.
+
+3. Time-frequency domain:
+Suppose we are working on a Speech Recognition task. We have an audio file in which someone is speaking a phrase (for example: How are you). Our recognition system should be able to predict these three words in the same order (1. ‘how’, 2. ‘are’, 3. ‘you’). When we applied FFT to our signal, it gave us only frequency values and we lost the track of time information. Now our system won’t be able to tell what was spoken first if we use these frequencies as features. We need to find a different way to calculate features for our system such that it has frequency values along with the time at which they were observed.
+eg: STFT, Spectrogram, Mel-spectrogram, MFCC, PLP, constant-Q transform
+
+4. Prosody Features: linguistc features
+Tones, Accent, Pauses, Stress, Pitch, Loudness, Intonation, Tempo, Rhythm
+
+# Features:
+1. Pitch Extraction :
+	fine peak in spectrum 
+	speaker identification i.e. male or female
+- Methods:
+* The speech signals are first low pass filtered because pitch freq. is typically less than 600Hz
+	1. Autocorrelation function (ACF): determine unknown period of quasi-periodic signal, peak value in ACF gives pitch period point
+	2. Average Magnitude Difference Function (AMDF) : zero value in AMDF gives pitch period point, faster
+	3. Cepstrum:  Give information about rate of change in different frequency band , strong peak better than ACF
+- Unvoiced sound: Zero pitch period 
+
+2. Energy: square of each sample then sum up all (Seprate voice and unvoiced, end point detcetion, audio segmentation)
+3. Zero crossing coefficient: sign change in 2 consecutive samples, Signum fun used, remove DC prior to ZCC calculation, (Sperate high and low freq., end point detection )
+4. Envelope : Amplitude Envelope of a signal consists of the maximum amplitudes value among all samples in each frame.
+5. Rhythm: the characteristic movement or timeing of connected speech()
+6. Melody
+7. Notes
+8. Spectral Moments:  (mean, variance, maximum value, minimum value, skewness, kurtosis and inter-quartile range)
+The moments of a function are quantitative measures related to the shape of the spectrum. The first moment is the mean value, the second central moment variance, the third standardized moment skewness, and the fourth standardized moment is kurtosis. This paly very important role when we are use using classical ML algorithms as a classifier.
+
+Spectral Centroid: at which freq the energy of a spectrum is centered upon, the center of gravity of the magnitude spectrum, measure brightness
+Spectral Bandwidth:
+Spectral Spread: 
+Spectral Contrast: considers the spectral peak, the spectral valley, and their difference in each frequency subband. 
+Spectral Rolloff: the frequency below which a specified percentage of the total spectral energy, e.g. 85%, lies.
+Spectral Flux:
+Spectral Subband Centroid: similar to formant frequencies, each sub band have centroid  freq.
+9. Spectrogram: Intensity, Frequency, Time (Spectral representation of speech signal) (Intensity of a signal in different freq. band over time)
+   Wideband Spectrogram   (15msec, 125Hz, vertical striations)
+   NarrowBand Spectrogram (50msec, 40Hz, horizantal line in speech spectrogram , high freq energy in unvoiced spectrogram )
+
+# Spectral Features: Spectral Analysis/ Spectral Density Estimation
+- Spectral analysis is the process of extracting feature from spectrum.
+- Spectrum : the frequency spectrum of an electrical signal is the distribution of the amplitudes and phases of each frequency component against frequency.
+- Pre-emphasis: 
+	Cancelling the effect of glottis.
+	Increasing the amplitude of the high frequency components of the speech signal to improve the overall signal-to-noise ratio. 
+	Usually speech signal is pre-emphasized before any further processing. 
+	Time-domain FIR HPF filter is used and Default value is 0.97. (y[n] = x[n]- 0.97*x[n-1]) 
+	Boosting the high-frequency energy makes information in higher formants more available to the acoustic model.
+- Short time speech analysis: extracting features from speech using short time window (15ms-100ms)
+- Framing: short time window (15ms-100ms) (A human can’t possibly speak more than one phoneme in this time window.)
+If the frame is much shorter we don't have enough samples to get a reliable spectral estimate, if it is longer the signal changes too much throughout the frame.
+- Windowing:
+	   Types: Hamming, Hannning, Rectangula, Blackman, 
+	   Act as LPF, Weighting window is used here to handle discontinuity of this small signal.
+	 * Selection of window is very important to avoid the distortion during framing, otherwise it will create noise in spectral domain. 
+		If small window : Energy in signal will fluctuate rapidly. Great time resolution.
+		If large window : Enegry in signal slow fluctuation, not reflect the changing property of signal. Great Freq. resolution.
+
+	Window overlapping:  windows overlapping help to save from losing a few frequencies and also capture the proper context. 
+
+- Periodogram/Power Spectral Density/Power Dnesity Spectrum : Modulus Square of DFT (FFT) of speech frame, (Power Spectral Density vs freq)
+- Cepstrum: 
+	Inverse FT of log periodogram
+        Give information about rate of change in different frequency band
+	Pitch tracking, log compressed ACF, strong peak better than ACF
+	Cepstral mean substraction to remove the channel effect
+	Invented for charcterizing seismic echoes
+- Mel Scale: 
+We humans perceive sound logarithmically. We are better at detecting differences in lower frequencies than higher frequencies. For example, we can easily tell the difference between 500 and 1000 Hz, but we will hardly be able to tell a difference between 10,000 and 10,500 Hz, even though the distance between the two pairs is the same. Hence, the mel scale was introduced. A mel-spectrogram is a therefore a spectrogram where the frequencies are converted to the mel scale.
+
+- Mel filter bank:
+Mel filter banks do exactly that by giving a better resolution at low frequencies and less at high. Triangular filter banks help to capture the energy at each critical frequency band and roughly approximates the spectrum shape. This also helps to smooth the harmonic structure.
+
+- DCT:
+DCT is an orthogonal transformation. Mathematically, this transformation creates uncorrelated features , which can be interpreted as independent or poorly correlated features. In Machine learning algorithms, uncorrelated features often give better results.
+
+- MFCC: [Mel-frequency cepstral coefficients] (39 coefficients)
+	The coefficients that make up the mel-frequency cepstrum
+	The shape of the vocal tract manifests itself in the envelope of the short time power spectrum, and the job of MFCCs is to accurately represent this envelope.  MFCC feature vector describes only the power spectral envelope of a single frame.
+
+-Steps:
+1. Pre-emphasis the input signal. (Due to the characteristics of larynx and vocalization, reduce channel effect, lot of phonological information)
+2. Windowing and Framing the signal into short frames. (statistically stationary)
+3. For each frame calculate the periodogram, estimate of the power spectrum. (human cochlea)
+4. Apply the mel filterbank to the power spectra, sum the energy in each filter. (discern the difference between two closely spaced freq.)
+	* Mel filterbank: the first filter very narrow and gives an indication of how much energy exists near 0 Hertz. As the frequencies get 	        higher our filters get wider as we become less concerned about variations.
+	* The Mel scale tells us exactly how to space our filterbanks and how wide to make them.
+	* a set of 20-40 (26 is standard) triangular filter
+
+5. Take the logarithm of all filterbank energies. (human hearing)
+	* Generally to double the percieved volume of a sound we need to put 8 times as much energy into it. This means that large        		  variations in energy may not sound all that different if the sound is loud to begin with. This compression operation makes our 		  features match more closely what humans actually hear. 
+	* Why the logarithm and not a cube root? The logarithm allows us to use cepstral mean subtraction, which is a channel normalisation.
+
+Why log , why not cube ?
+because log perform cepstral mean normalization
+ 
+6. Take the DCT of the log filterbank energies.  (decorrelates the energies)
+	* Because filterbanks are all overlapping, the filterbank energies are quite correlated with each other.
+	* Make the extracted features independent.
+
+
+						(Or)
+
+6. Take IDFT : IDFT transform is equivalent to a DCT discrete cosine transformation
+	* As described earlier, our voice frequency F0 – fundamental frequency and formant F1, F2, F3 ,Frequency F0 male about 125 Hz, 210 Hz 		  in women, particularly represents the pitch of the voice in each person. This pitch information is not useful in speech recognition, 		  so we need to find a way to eliminate information about F0, helping the recognition model not depend on individual voice pitch.
+	* To remove information about F0, we take 1 variable step converting Fourier backwards (IDFT) to the time domain, we obtain Cepstrum. 		  If you look closely, you will realize that the name ” cepstrum ” actually reverses the first four letters of ” spetrum “.
+	* Then, with Cepstrum obtained, the information related to F0 and the information related to F1, F2, F3 … are separated We simply get 		  the information. in the first paragraph of cepstrum (the large circle in Figure 4). To calculate MFCC, we only need the first 12 		  values.
+
+7. Keep DCT coefficients 2-13, discard the rest.
+	* Only 12 of the 26 DCT coefficients are kept. This is because the higher DCT coefficients represent fast changes in the filterbank 		  energies and it turns out that these fast changes actually degrade ASR performance, so we get a small improvement by dropping them.
+	* No of DCT coefficients depends on no. of mel filter bank used.
+	* The zeroth coefficient is often excluded since it represents the average log-energy of the input signal, which only carries little   		  speaker-specific information.
+
+- Dynamic Features:
+
+ In speech recognition, information about context and change is important. For example, at the beginning or ending points of many consonants, this change is very pronounced and can identify phonemes based on this change.  This type of feature normalization will effectively cancel the pre-emphasis done earlier. 
+ 
+* First derivatives (over time) of the first 13 mfcc features called Delta. 
+* Second derivatives (over time) of the first 13 features called Delta-Delta.
+* MFCCs nd their delta nd double delta features are calculated for each frame. (13+13+13=39)
+
+- Cepstral mean and variance normalization
+Next, we can perform the feature normalization. We normalize the features with its mean and divide it by its variance. The mean and variance are computed with the feature value j over all the frames in a single utterance.
+
+Limitations:  MFCC is not very robust against noise.
+
+- Σ is the covariance matrix which measures correlations among variables. MFCC parameters have a nice property. There are relatively independent of each other. Therefore, the non-diagonal element of Σ can simply set to zero.
+ 
+# MFCC Parameters:
+
+signal – the audio signal from which to compute features. Should be an N*1 array
+samplerate – the samplerate of the signal we are working with.
+winlen – the length of the analysis window in seconds. Default is 0.025s (25 milliseconds)
+winstep – the step between successive windows in seconds. Default is 0.01s (10 milliseconds)
+numcep – the number of cepstrum to return, default 13
+nfilt – the number of filters in the filterbank, default 26.
+nfft – the FFT size. Default is 512. (N>L , to avoid the aliasing)
+lowfreq – lowest band edge of mel filters. In Hz, default is 0.
+highfreq – highest band edge of mel filters. In Hz, default is samplerate/2
+preemph – apply preemphasis filter with preemph as coefficient. 0 is no filter. Default is 0.97.
+ceplifter – apply a lifter to final cepstral coefficients. 0 is no lifter. Default is 22.
+appendEnergy – if this is true, the zeroth cepstral coefficient is replaced with the log of the total frame energy.
+winfunc – the analysis window to apply to each frame. By default no window is applied. You can use numpy window functions here 
+e.g. winfunc=numpy.hamming
+
+- Time resolution:
+- Freq Resolution: Frequency resolution is rather a property of the Fourier transform of the rectangular function 
+* The frequency resolution is defined as Fs/N in FFT. Where Fs is sample frequency, N is number of data points used in the FFT. For example, if the sample frequency is 1000 Hz and the number of data points used by you in FFT is 1000. Then the frequency resolution is equal to 1000 Hz/1000 = 1 Hz. One can increase the resolution by increasing the number of sample points N. 
+* Windowing always distored the frequency resolution.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+# Automatic Speech Recognition
+
+# Types of Speech sounds
+1. Voiced   (time series have obvious periodic, vocal chords vibration, fine spectrum with formant envelope, eg:vowels)
+2. Unvoiced (No vocal chords vibration,  White noise eg:th)
+3. Silence
+
+# Phonetics:
+1. Phonemes (Smallest sound within a word, 44 phonemes in American English, spelled by 1-4 letters)
+-It is the distinct units of sound in language that distinguish one word from another.
+-The same letter in words can pronounce differently.eg: "ough" in----> Though I coughed roughly and hiccoughed throughout the lecture, I still thought I could plough through the rest of it.
+-Allophones:different sound for same phoneme in words (eg:/p/ in pit and spit)
+
+	-Vowels (Front {eg:i, high formant freq.},mid {eg:a,e, balance formant freq.},back {eg:o,u, low  formant freq.})(Three properties are needed to define vowels: tongue height, tongue backness and lip roundedness.)
+	-Dipthongs: composed of two vowels
+	-Semi-vowels (Liquid, Glids)
+	-Consonants (Nasal[m,n], Fricative[f,v,s], Stops [p,b], Whisper[sh], Affricate[ch,jh])
+
+2. Graphemes: around 250 graphemes in English , letters or letter groups that correspond to a single sound
+- grapheme is the smallest fundamental unit in written language. A Grapheme is a symbol used to identify a phoneme; it's a letter or group of letters representing the sound.
+eg: The sounds /k/ is represented by the letter 'c' in cat. Here is an example of a 2 letter grapheme: l ea f.
+ 
+3. Syllable: For pronunciation, we split a word into syllable(s). A syllable usually contains one vowel sound, with or without surrounding consonants. to give rythm, divide b|w 2 middle consonants
+- Syllable count: Place hand under chin and feels the number of time mouth drops open to say vowel
+* eg: Fast, Basket (Bas-Ket), banana(ba-na-na) 
+
+4. Stress: In a word if more than 1 syllable is present then one syllable is pronounced strongly.
+5. Intonation: rise and fall of voice in speaking
+
+#Popular Corpora:
+In speech recognition, we have collected corpora which are phonetically transcribed and time-aligned. (the start and the end time of each phone are marked.) TIMIT is one popular corpus that contains utterances from 630 North American speakers.
+
+# Speech Recognition
+- In speech recognition, knowing how we hear is more important than knowing how we speak in feature extraction.
+- ASR: the key focus is finding the most probable "word sequence" given the audio.
+In other words, the principle is simplified to finding the word sequence W with the highest probability given the observed audio signals.= 
+					W* = arg max P(W|X)                          #Discriminative Models(ML,DL models)
+   					   = arg max P(X|W) * P(W)                   #Generative models(eg: GMM, HMM)
+Where:
+- P(X|W): Acoustic Model: The acoustic model is about what the speech may sound given a sequence of words. 
+- P(W): Language Model: The language model is about the likelihood of the word sequence. It makes the sequence grammatical and semantical sound.
+- W: Speaking people know about 20K to 50K words. If we use words as W, the space for W will be unnecessarily large. In addition, English is not a phonetic language. Letters are not always pronounced the same in different words.  Phones are more fundamental than words in speech. Therefore, our acoustic model will be phone-based rather than word-based.
+- X:The audio signal contains noisy information. We are going to extract features from the audio waveform and X will be the feature vectors.
+eg: MFCC, Spectrogram
+
+# Note: 
+- Generative model: 
+revolves around the distribution of a dataset to return a probability for a given example. 
+based on the joint probability, p( x, y).
+generate both inputs and outputs (for example, by Hidden Markov model, Bayesian Networks and Gaussian mixture model).
+The generative model(HMM,GMM, Bayes) is much easier to model in speech recognition before the introduction of DL.
+
+- Discriminative model: 
+a discriminative model makes predictions based on conditional probability
+either used for classification or regression
+used to specify outputs based on inputs (by models such as Logistic regression, Neural networks and Random forests).
+
+# Supervised Learning: Features, Labels
+* To create an acoustic model, our observation X is represented by a sequence of acoustic feature vectors (x₁, x₂, x₃, …). 
+* This 25ms width is large enough for us to capture enough information and yet the features inside this frame should remain relatively stationary. If we speak 3 words per second with 4 phones and each phone will be sub-divided into 3 stages, then there are 36 states per second or 28 ms per state. So the 25ms window is about right.
+* Context is very important in speech. Pronunciations are changed according to the articulation before and after a phone
+* Formants are important in speech recognition
+- Pronunciation Model:A pronunciation model can use tables to convert words to phones, or a corpus is already transcribed with phonemes already.
+
+- Acoustic Model:
+The acoustic model is about modeling a sequence of feature vectors given a sequence of phones instead of words. But we will continue the use of the notation p(X|W) for the acoustic model. Just be aware.
+
+- GMM:
+Feature modelling, The distribution of features for a phone can be modeled with a Gaussian Mixture Model (GMM). Let’s simplify the picture and assume that there is only one feature for each frame. Multivariate normal distribution with 39 variables for MFCC modelling. In the context of speech recognition, we can learn the Gaussian model (μ, σ²) for each phone. This serves as the likelihood probability. This also acts as the emission probability in an HMM.
+
+GMM models the observed probability distribution of the feature vector given a phone. It provides a principled method to measure “distance” between a phone and our observed audio frame. To model speaker characterstic in ASR system.
+
+- HMM:
+acoustic modeling , The transition between phones and the corresponding observable can be modeled with the Hidden Markov Model (HMM).
+An HMM model composes of hidden variables(phones) and observables(features). 
+On the other hand, HMM produces a principled model on how states are transited and observed. 
+
+- Language Model: N-gram LM
+likelihood of the word sequence
+
+- DTW (Dynamic Time Wraping):
+Used to matching sequence, only permit ordered sequence. (Phrase: My name is shivam. Testing: My shivam is name. That is overcome by HMM)
+
+- Viterbi Algorithm: get phoneme boundaries, It is dynamic programming algo for finding the most likely sequence of hidden states that result in sequence of observed events.
+
+- HMM: (i|p: features, o|p :CD phones)
+
+* Markove Chain: A Markov chain contains all the possible states of a system and the probability of transiting from one state to another. A
+ first-order Markov chain assumes that the next state depends on the current state only. 
+
+* An HMM is modeled by the transition and the emission probability.
+If we have an audio clip, the internal states represent the phones. 
+
+HMM represent sequence of phonemes as a sequence of probability distribution. Instead of representing temporal variation of a phoneme as a feature vector we represent it by small no. of probability distribution are known as HMM states.  Because there is uncertainty present in state of model i.e. prob. distribution, so it is called hideen markov model.
+HMM is a sequence of states. The no. of states for a sequence of words will be less than no. of feature vectors, so computation will be decrease.
+
+No. of states= No. of prob distributions
+Parameter:A {Transition Prob}, B{Emission Prob}, pi
+
+3 Steps in HMM:
+1. Matching: Forward Algorithm--- to calculate the likelihood of our observations (audio features).
+2. Optimal Path: Viterbi Algo --  given the HMM model, how can we find the internal states given the sequence of observations.
+3. Training: Forward-Backword Algorithm/ EM Algo / Baum-Welch Algo
