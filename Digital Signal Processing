@@ -1,0 +1,72 @@
+Continous: Define  each instant of time
+Discrete: define particular instant of time only i.e. discontinous in time axis and continous in amplitude axis
+Analog: both time and amplitude are continous
+Digital : both time and amplitude are dis-continous
+
+-Continious vs Discrete (Time Axis)
+-Digital vs Discrete (Amplitude Axis)
+-Analog Vs Digital  
+-Continious Vs Analog (Time vs Both Time & amplitude continous)
+-Amplifier vs Attenuator
+-Signum Function
+-Rectangular Function/Gate function
+
+-Signal
+  Types of Signal
+-ADC
+   Sampling (Nyquist)
+   Quantization
+-System
+   Types of System
+-LTI System
+   Convolution
+   Impulse Response
+   Eigen Function (Base fun{eg: exponential sinusiodal}:To shift from convolution to multiplications) & Eigen Value (Transfer function)
+-Transforms
+   CT Fourier Series    [input: CT, P :::: Output: DT, NP] [Represent any general signal in form of base function]
+   DT Fourier Series    [input: DT, P :::: Output: DT, P]
+   CT Fourier Transform [input: CT, NP :::: Output: CT, NP]  [Magnitude Spectrum: Even, Phase Spectrum: Odd] [For energy, stable signal]
+   DTFT                 [input: DT, NP :::: Output: CT, P] [For infinite sequence] 
+   DFT  [N ponit DFT]  		
+	[input: DT, P :::: Output: DT, P]  [For finite sequence ie N points, ie sampling one period of DTFT] [Allow to evaluate FT on digital 		computer] [Linear Convolution, Circular Convolution] [N*N Multiplication, N(N-1) addition]
+   FFT [Not a transform, reduce computation, N/2logN mul , NlogN add, Radix r FFT, Butterflies N/2]
+   Laplace Transform:
+	 [Generalization of CTFT, For both stable and unstable] [Freq. domain not visible, for designing system] [Unilateral [Causal, initial 			condition], Bilateral (ROC)] [Does n't exist for periodic signal]
+   Z-Transform 
+	 [Genralization of DTFT, counter part of discrete LT, All analog TF mapped to discrete TF, map infinite analog freq. to {0,2pi},ROC (Unit cicle)]
+
+-Filters
+   LPF
+   HPF
+   BPF
+   BRF
+
+-Digital Filters
+   IIR (magnitude response, feedback, Unstable,  depends upon present input as well as past outputs,)
+   FIR (Stable, Depends on present input and past input, no feedback,  Linear phase response, eg:  )
+
+-Types of Windows function
+   Rectangular
+   Hamming
+   Hanning
+   Bartlett
+   Kaisar
+
+Rayeilgh/Parseval Power Relation
+Weiner Kincheir Relation
+Center Ordinate Theorm
+Drichlet Conditions
+Gibbs Phenomenon
+
+
+Analog----> Sampler >>>>> Discrete ------> Quantizer --------> Encoder>>>>>>>>>> Digital
+Convolution is a mathematical operation which is used to expressed the i|p and o|p relationship in LTI system.
+Fourier Series: To represent any point/vector in space we require base co-ordinate x,y,z vector, In same case to represent any general signal we require base signal set. 
+Eg: sinwt, coswt, sinusoidal exponential,(orthogonality is must)
+
+
+Distortionless System:
+Constant magnitude response and linear phase response.
+Bandwith for distortionless system is infinite.
+
+Bandwidth: Width of group of frequencies for which magnitude response of an LTI system is non-zero.
