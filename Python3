@@ -1,0 +1,102 @@
+What is programming ?
+What is algorithm ?
+What is the rule in Python to declare the variable ?
+What is data types in python ?
+Is string mutable or not ?
+What is difference between find() and index() methods?
+What is feature of list?
+Difference between append(), insert() and extend() ?
+Sort() vs sorted()?
+How to handel immutable property in python?
+What is feature of dictionary ?
+When we looping through dictionary , then what are return values i.e. keys or values ?
+get() vs items() in dictionary ?
+What is difference between python collection arrays: List, Tuple, Set, and Dictionary ? 
+What is recursion ?
+What is lambda function ?
+What is *args and **kwargs ?
+What is decorators ?
+What is module ?
+What is use of dir() function ?
+What is use of __name__ ?
+What is classes and objects ?
+What is constructor ?
+What is __init__() method ?
+What is "self" parameter ?
+What is use of id()?
+What is instance variable in OOPs?
+What is class/static variable in OOPs?
+Types of methods in OOPs ?(Instance, Class , Static)
+What is inheritance and its types ?
+What is Method Resolution Order (MRO) ?
+What is polymorphism ?
+What are four ways to implement plymorphism ? (Ducktyping, operator overloading, method overloading, method overriding)
+What is abstraction ?
+What is use of ABC module ?
+What is iterators ?
+What is __iter__() and __next__() ?
+What is generators ?
+return vs yield ?
+What is exception handling?(try,except,finally)
+What is multithreading ?
+What is thread ?
+What is schedular ?
+What is file handling ?
+Differece between read(), readline() and readlines().
+What is linear search, binary search ?
+What is bubble sort and selection sort ?
+What is scope of variable ?
+gloabal() vs globals() ?
+What is regular experession ? (findall, search, sub, split)
+What is match object ?
+What is GIT ?
+What is use of zip() ?
+Generate a sequence of tuples from 2 given sequence arguments - pairing the ith element of first with ith element of second sequence.
+
+What is socket programming ?
+
+* Docstrings: The first string after the function header is called the docstring and is short for documentation string. It is briefly used to explain what a function does.
+* A palindrome is a word, number, phrase, or other sequence of characters which reads the same backward as forward, such as madam or racecar.
+* Python lists can be used intuitively as stack via the two list operations append() and pop()
+* Python lists can be used intuitively as queue via the two list operations insert() and pop()
+
+Questions:
+1. Check if list contains integer x. (Hint: in)
+2. Find duplicate number in integer list.(Hint: set(), add())
+3. Check if two strings are anagrams.
+4. Remove all duplicate form list. (Hint:set())
+5. Find duplicate numbers then remove duplicates. 
+6. Check if a string is a palindrome.(Hint:[::-1])
+7. Find pairs of integers in list so that their sum is equal to integer x.
+8. Get missing number in [1...100]
+9. Find max and min in unsorted list
+10. Compute the first n Fibonacci numbers
+
+
+
+* NumPy is a Python library used for working with arrays.It also has functions for working in domain of linear algebra, fourier transform, and matrices.Python we have lists that serve the purpose of arrays, but they are slow to process.
+* Seaborn is a library that uses Matplotlib underneath to plot graphs. It will be used to visualize random distributions.
+* Pandas is a Python library used for working with data sets. It has functions for analyzing, cleaning, exploring, and manipulating data.
+* SciPy is a scientific computation library that uses NumPy underneath. SciPy stands for Scientific Python.It provides more utility functions for optimization, stats and signal processing.
+
+Difference between loc and iloc ?
+The main distinction between loc and iloc is: loc is label-based, which means that you have to specify rows and columns based on their row and column labels. iloc is integer position-based, so you have to specify rows and columns by their integer position values (0-based integer position).
+
+
+Problems:
+1. 5//-3.0 *2
+2. print('He"l"l\'o') or print("He"l"lo")
+3. lip = [('car',180),('bike',100), ('scooty',10)]
+   t   = max(lip)
+   print(t[0])
+
+Note:
+In OOPs function is called methods.
+Parameter is also known as argument.
+Feature is also known as attribute.
+Python by default don't support abstraction,method overloading, method overriding. 
+
+Programs:
+Write a program to perform the division only when Numerator > Denominator between two numbers.
+Write a program to calculate the number of capital letters in a string.
+Write a program to find second peak number in list ?
