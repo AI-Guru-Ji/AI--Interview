@@ -1,0 +1,152 @@
+###############################################################################################################################################
+1. Linear Regression:
+* Given the training data, we "compute a line" that fits this training data so that the summed squared distance between the line and the training data is minimal.
+* This line can be used for many things – e.g. to predict the outcome for unseen input data x.  In general, linear regression is great for predicting a continuous output value y, given continuous input value x.
+eg: predecting house price based on it's size
+###############################################################################################################################################
+2. Logistic Regression and Sigmoid Function:
+* Popular classification algo
+* Predicting the "likelihood of categorical" outcomes is the main motivation for logistic regression. 
+* Fits an S-shaped curve, called “the sigmoid function” in training data. 
+* Curve helps you make binary decisions. logistic regression model that returns a probability value for any new input value.
+eg: likelihood of lung cancer, given the number of cigarettes a patient smoke., liklihood: highest probability
+* Limitation: Only for 2-Class problem
+----------------------------------------------------------------
+import sklearn
+from sklearn.linear_model import LogisticRegression
+X = np.array([[0, "No"],
+              [10, "No"],
+              [60, "Yes"],
+              [90, "Yes"]])
+model= LogisticRegression().fit(X[:,0].reshape(-1,1),X[:,1])
+model.predict([[2],[490],[33]])
+model.predict_prob([[450]])
+------------------------------------------------------------------------
+###############################################################################################################################################
+3. KNN:
+* The popular K-Nearest Neighbors (KNN) algorithm is used for regression and classification in many applications such as recommender systems, image classification, and financial data forecasting. It is the basis of many advanced machine learning techniques (e.g., in information retrieval).
+* It can predict the continous as well as categorical output for unseen input.
+* However, KNN follows a quite different path. The simple idea is the following: the whole data set is your model.
+* The KNN machine learning model is nothing more than a set of observations. Every single instance of your training data is a part of your model. Training becomes as simple as throwing the training data into a container data structure for later retrieval. There’s no complicated inference phase and hours of distributed GPU processing to extract patterns from the data.
+
+a) Find the K nearest neighbors of x according to a predefined similarity metric.
+b) Aggregate the K nearest neighbors into a single “prediction” or “classification” value. 
+
+For regression you can use any aggregator function such as average, mean, max, min, Eucledian distance, etc.
+For classification voting mechanism can be used.
+
+* Limitation: Changing the value of "K" result can be change.
+----------------------------------------------------------
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.neighbors import KNeighborsClassifier
+X=np.array([[10,1000],[15,1500],[20,2000],[30,3000],[35,3500],[40,4000],[50,5000]])
+model=KNeighborsRegressor(n_neighbors=4).fit(X[:,0].reshape(-1,1), X[:,1].reshape(-1,1))
+model.predict([[25]])
+-------------------------------------------------------------
+###############################################################################################################################################
+4. SVM: 
+What is our goal for SVM?
+Answer: To find the best point(in 1-D), line(in 2-D), plane(3-D), hyperplane(in more than 3-D) to separate the classes. 
+* Used for both classification as well as regression.
+* The reason is their robust classification performance – even in high-dimensional spaces: SVMs even work if there are more dimensions (features) than data items.
+* Use the training data to "find a decision boundary" that divides data in the one class from data in the other class.
+* In the two-dimensional space, the decision boundary is either a line or a (higher-order) curve. The former is called a “linear classifier”, the latter is called a “non-linear classifier”. 
+
+But what is the best decision boundary?
+* SVM provide a unique and beautiful answer to this question. Arguably, the best decision boundary provides a maximal margin of safety. In other words, SVMs maximize the distance between the closest data points and the decision boundary. The idea is to minimize the error of new points that are close to the decision boundary.
+
+- Types of SVM:
+a). Maximal Margin Classifier
+b). Kernel trick classifier
+
+* Kernel: Mapping of data to higher dimensional. It is used when data is non-linearly seprable. eg: Linear, Polynmial, RBF
+
+* Limitations: 
+1. Useful for small dataset.
+2. High prone to overfiting.
+
+------------------------------------------------------------------------
+from sklearn import svm
+X = np.array([[9, 5, 6, "computer science"],
+              [10, 1, 2, "computer science"],
+              [1, 8, 1, "literature"],
+              [4, 9, 3, "literature"],
+              [0, 1, 10, "art"],
+              [5, 7, 9, "art"]])
+## One-liner
+svm = svm.SVC(gamma=.001, C=10).fit(X[:,:-1], X[:,-1])
+## Result & puzzle
+student_0 = svm.predict([[3, 3, 6]])
+print(student_0)
+student_1 = svm.predict([[8, 1, 1]])
+print(student_1)
+---------------------------------------------------------------------------
+* SVM Hyperparameters:
+i). C/Penalty Term: 
+* It is a hypermeter in SVM to control error i.e. decision curve handling
+* if low C means low error, medium C means medium error and large C means high error. And here medium C giving is the better model.
+* In low C curve get tilt as per data to reduce the error.
+* There is no thumb of rules that low C will work always or high C or medium C.
+* high C can increase the variance in model which can cause overfit.
+* For choosing C we generally choose the value like 0.001, 0.01, 0.1, 1, 10, 100
+
+
+ii). Gamma:
+* Gamma is used when we use the Gaussian RBF kernel.
+* Gamma is a hyperparameter which we have to set before training model. Gamma decides that how much curvature we want in a decision boundary.
+* Gamma high means more curvature (less spread). Gamma low means less curvature (high spread).
+* It deals with Outliers.
+* High gamma can cause biasing ie. underfit.
+* for Gamma 0.001, 0.01, 0.1, 1, 10, 100
+
+Note: we use C and Gammas as grid search. {(C, Gamma):--(1,0.001),(1,0.01),(1,0.1), }
+###############################################################################################################################################
+
+5. Decsion Tree:
+* Non linear
+* Decision trees are used for classification problems such as “which subject should I study, given my interests?”.
+* A DT is a tree where each node represent the feature, each branch is the decsion, and each leaf is outcome.
+* Root node contain most important feature, it is obtained by using Information gain or Gini Index. It is placed at top because it can high impact on the final classification 
+* It maps out all possible decion paths in the form of tree.
+* DT tree built by splitting the training set into distinct node.
+* Decision trees represent a structured way of making decisions – each decision opens up new branches. By answering a bunch of questions, you will ultimately land on the recommended outcome.
+* Pruning
+
+Limitation: Selection of root node.
+----------------------------------------------------------------------------------
+import numpy as np
+from sklearn import tree
+## Data: student scores in (math, language, creativity) --> study field
+X = np.array([[9, 5, 6, "computer science"],
+              [1, 8, 1, "literature"],
+              [5, 7, 9, "art"]])
+## One-liner
+Tree = tree.DecisionTreeClassifier().fit(X[:,:-1], X[:,-1])
+## Result & puzzle
+student_0 = Tree.predict([[8, 6, 5]])
+print(student_0)
+student_1 = Tree.predict([[3, 7, 9]])
+print(student_1)
+----------------------------------------------------------------------------------
+###############################################################################################################################################
+
+6. K-means Clustering:
+
+* Given the data sets and an integer k, the K-Means algorithm finds k clusters of data such that the difference between the k cluster centers (=the centroid of the data in each cluster) and the data in the k cluster is minimal.
+
+* So how does the K-Means algorithm work? In a nutshell, it performs the following procedure:
+
+i) Initialize random cluster centers (centroids).
+ii) Repeat until convergence:
+	Assign every data point to its closest cluster center.
+	Recompute each cluster center to the centroid of all data points assigned to it.
+
+
+
+
+
+
+
+
+
+###############################################################################################################################################
