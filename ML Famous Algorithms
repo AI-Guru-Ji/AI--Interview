@@ -1,9 +1,8 @@
-###############################################################################################################################################
 1. Linear Regression:
 * Given the training data, we "compute a line" that fits this training data so that the summed squared distance between the line and the training data is minimal.
 * This line can be used for many things – e.g. to predict the outcome for unseen input data x.  In general, linear regression is great for predicting a continuous output value y, given continuous input value x.
 eg: predecting house price based on it's size
-###############################################################################################################################################
+
 2. Logistic Regression and Sigmoid Function:
 * Popular classification algo
 * Predicting the "likelihood of categorical" outcomes is the main motivation for logistic regression. 
@@ -21,8 +20,7 @@ X = np.array([[0, "No"],
 model= LogisticRegression().fit(X[:,0].reshape(-1,1),X[:,1])
 model.predict([[2],[490],[33]])
 model.predict_prob([[450]])
-------------------------------------------------------------------------
-###############################################################################################################################################
+
 3. KNN:
 * The popular K-Nearest Neighbors (KNN) algorithm is used for regression and classification in many applications such as recommender systems, image classification, and financial data forecasting. It is the basis of many advanced machine learning techniques (e.g., in information retrieval).
 * It can predict the continous as well as categorical output for unseen input.
@@ -42,8 +40,7 @@ from sklearn.neighbors import KNeighborsClassifier
 X=np.array([[10,1000],[15,1500],[20,2000],[30,3000],[35,3500],[40,4000],[50,5000]])
 model=KNeighborsRegressor(n_neighbors=4).fit(X[:,0].reshape(-1,1), X[:,1].reshape(-1,1))
 model.predict([[25]])
--------------------------------------------------------------
-###############################################################################################################################################
+
 4. SVM: 
 What is our goal for SVM?
 Answer: To find the best point(in 1-D), line(in 2-D), plane(3-D), hyperplane(in more than 3-D) to separate the classes. 
@@ -65,7 +62,6 @@ b). Kernel trick classifier
 1. Useful for small dataset.
 2. High prone to overfiting.
 
-------------------------------------------------------------------------
 from sklearn import svm
 X = np.array([[9, 5, 6, "computer science"],
               [10, 1, 2, "computer science"],
@@ -90,7 +86,6 @@ i). C/Penalty Term:
 * high C can increase the variance in model which can cause overfit.
 * For choosing C we generally choose the value like 0.001, 0.01, 0.1, 1, 10, 100
 
-
 ii). Gamma:
 * Gamma is used when we use the Gaussian RBF kernel.
 * Gamma is a hyperparameter which we have to set before training model. Gamma decides that how much curvature we want in a decision boundary.
@@ -100,7 +95,6 @@ ii). Gamma:
 * for Gamma 0.001, 0.01, 0.1, 1, 10, 100
 
 Note: we use C and Gammas as grid search. {(C, Gamma):--(1,0.001),(1,0.01),(1,0.1), }
-###############################################################################################################################################
 
 5. Decsion Tree:
 * Non linear
@@ -127,8 +121,7 @@ student_0 = Tree.predict([[8, 6, 5]])
 print(student_0)
 student_1 = Tree.predict([[3, 7, 9]])
 print(student_1)
-----------------------------------------------------------------------------------
-###############################################################################################################################################
+
 
 6. K-means Clustering:
 
@@ -140,13 +133,3 @@ i) Initialize random cluster centers (centroids).
 ii) Repeat until convergence:
 	Assign every data point to its closest cluster center.
 	Recompute each cluster center to the centroid of all data points assigned to it.
-
-
-
-
-
-
-
-
-
-###############################################################################################################################################
