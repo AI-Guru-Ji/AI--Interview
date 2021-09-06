@@ -1,0 +1,243 @@
+#Machine Learning
+-Bias:  statistical error (The error causes one sampling group to be selected more often than other groups included in the experiment.)
+-Variance
+-Underfit
+-Overfit
+-Oversampling
+-UnderSampling (SMOTEK)
+-Ensemble Learning: Bagging and Boosting are ensemble techniques to train multiple models using the same learning algorithm and then taking a call.
+-Bagging is usually applied where the classifier is unstable and has a high variance. We take a dataset and split it into training data and test data. Then we randomly select data to place into the bags and train the model separately.
+-Boosting is usually applied where the classifier is stable and simple and has high bias. The emphasis is on selecting data points which give wrong output to improve the accuracy.
+- Inference: Inference refers to the process of using a trained machine learning algorithm to make a prediction.
+-Shuffling
+-Sorting
+-K-Fold cross validation
+-Singular Valur Decomposition
+
+Why do we find eigenvectors?
+Eigenvectors give uncorrelated features of our data, or they define the directions of the new axis onto which we will project the data.
+Here, all eigenvectors are independent and have unit length.
+To reduce the number of features, we need to reduce the number of eigenvectors.
+
+And, what's the use of eigenvalues?
+Eigenvalues represent the amount of information retained by each eigenvector (or the variance explained by eigenvectors). They help in deciding which new features to keep and which to drop.
+
+Data Pre-processing:
+- Standardization
+- Normalization
+- Covariance Matrix
+- Central Tendency (Mean, Median, Mode)
+* Why do we standardize the data?
+Because different features in our data will have different units of measurement and, even if they have the same units, they may vary in magnitude. So, standardization helps in making the data have comparable range of values.
+
+
+Feature Engineering:
+-Outliers  
+-Imputation (Missing values)
+-Binning
+-One hot encoding
+-Scaling
+
+
+Data Splitting:
+- Train
+- Validation
+- Test
+
+Evaluation Metrics:
+-Jaccacrd Index
+-Confusion Matrix
+TP:
+TN:
+FP:Type-1 error
+FN:Type-2 error
+--F1-Score
+--Precision
+--Recall (Sensitivity) (True Positive Rate)
+--Specificity (True Negative Rate)
+-ROC curve :plot of the true positive rate (Sensitivity) against the false positive rate (Specificity) 
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+-Supervise Learning: Labeled
+------------------------------------------------------------------------------------------------------------------------------------------------
+--Regression: (continious output)
+---Linear Regression
+---Polynomial
+---KNN
+---SVM
+---Decision Tree 
+---Random Forest 
+---Neural Network Regression
+---Ridge(L2) (regularization, multi-colinearity, beetasquare)
+---LASSO(L1) (regularization, absolute penalty, lamda, beeta)
+------------------------------------------------------------------------------------------------------------------------------------------------
+--Classification:(categorical/discrete output)
+---KNN (K, feature similarity, euclidian distance)
+---Logistic Regression (linear, 2class, probability output, categorical independent variable, sigmoid, logloss)
+---SVM (linear, hyperplane, margin, support vector, kernel, C conrol boundary, gamma control outlier) (Variance if C is high and Gamma is low,)
+---Decision Tree (node, Root node, leaf, branch, gini index, Information gain,  Entropy, categorical variable, Pruning)
+---Random Forest (random feature splitting and rootnode selection, voting mechanism)
+---Naive Bayes (linear, baye's theorm)
+---Neural Network Classifier
+------------------------------------------------------------------------------------------------------------------------------------------------
+-Unsupervised Learning:unlabeled
+------------------------------------------------------------------------------------------------------------------------------------------------
+--Dimnesion Reduction
+--- LDA, PCA, Boruta,t-sne
+-PCA: unsupervised learning algorithm which can be used for dimensionality reduction.
+* Now, what is dimensionality reduction?
+Dimensionality Reduction is the process of reducing the number of input features of a dataset, by transforming the data from a higher dimensional space to a lower dimensional space.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+--Clustering (grouping, unlabeled)
+---Partion
+----K-Means, Fuzzy 
+---Hierarchical
+----Agglomartive
+---Density
+----DBSCAN
+------------------------------------------------------------------------------------------------------------------------------------------------
+--Recommendation System
+---Content(Memory)
+---Collabrative
+------------------------------------------------------------------------------------------------------------------------------------------------
+--Summarization
+---Extractive: TextRank, LexRank, Latent Semantic Analysis, Pagerank
+---Abstract: GPT2, T5, BERT, BART
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Deep Learning:
+- Iteration
+- Batch
+- Epochs
+-Bias
+-Weight
+
+Hyperparameter Vs Parameter
+
+-Architecture:
+-Neuron
+-- Bias neuron
+-- MP Neuron
+-- Perceptron
+-- MLP(Multi Layer Perceptron)/ANN/FFNN
+-- RBF (Radial Basis Function)Feed Forward
+-- CNN 
+-- RNN
+--- LSTM
+--- GRU
+--- Bi-RNN
+--- Seu2Seq (Encoder-Decoder)
+--- Attention Model
+--- Transformer
+--- BERT,BART, GPT
+-- Auto Encoder
+-- Capsule Network
+
+-Error Function/ Cost Function/ Loss Function: 2 types
+  Predicted Output  |  Error Function
+	Real Value  |  Squared Error (RMSE, MSE)
+	Probability |  Cross Entropy (Log loss)
+
+-Activation Functions:
+-- Sigmoid (Hidden , output(in case of 2 class problem))
+-- Tanh/Hyperbolic
+-- RELU (Non-linear, Only in Hidden Layer)
+-- Leaky RELU (Only in Hidden Layer)
+-- Softmax (in Final Layer)
+---Vanishing and Exploding Gradients
+
+-Regularization:
+-- Dropout
+-- L1/LASSO
+-- L2/Ridge
+-- Early Stopping
+-- Data Augmentation
+
+-Backpropogation/ Optimization Algorithms:
+-- Gradient Descent (Batch GD)
+-- Stochastic GD 
+-- Mini Batch GD
+-- Momentum GD
+-- RMSprop
+-- ADAM
+
+-Back Time Propagation
+
+-Transfer Learning
+
+-CNN
+--Correlation
+--Convoution
+--Filters, Strides, Padding
+--Layers:
+---Convolution
+---Pooling(Average/Max)
+---Dense
+---Softmax layer(Final layer)
+--Sparse Connection
+--Weight Sharing
+--Inception Network
+--Ensemble
+--Skip connection
+--YOLO
+--GAN
+
+- CNN Layers:
+--Convolution 
+--Dense/Fully connected 
+Note: Dropout and Pooling Layers are not countable while counting the no. of layers of architecture. So If someone ask about your CNN architecture have how many layers then just count the Conv layers, Dense layers and Softmax layer.
+
+-CNN Pre-trained Networks
+-- LeNet-5
+-- AlexNet-8
+-- VGG-16
+-- GoogleNet-22
+-- ResNet-152
+------------------------------------------------------------------------------------------------------------------------------------------- 
+Natural Language Processing (NLP):
+
+-Libraries:NLTK, Gensim, Spacy, HuggingFace
+-Components
+--Lexical
+--Syntactic
+--Semantic
+--Disclosure Integration
+--Pragmatic
+--Recurrent neural network is called recurrent, because A network is applied for each input element, and output from the previous application is passed to the next one
+
+-Common Terms
+--Corpus
+--Parsing
+--Stopwords
+--Context vector: output of last RNN layer in encoder, representing whole information of input sequence
+--Attention matrix would represent the degree which certain input words play in generation of a given word in the output sequence.
+--Positional encodings: ordering of words ie two close words
+
+-Text processing
+--Tokenization
+--Normalization
+---Stemming
+---Lemmatization
+--POS Tagging
+
+-Word Representation
+--Bag of Words
+--TF-IDF
+--N-grams
+--Word Embedding
+---Word2Vec
+---Glove
+
+-Architecure
+--Simple RNN
+--GRU (Reset gate, Update gate, Memory Cell, 3 multiplication, 1 addition, 2 sigmoid, 1 tanh)
+--LSTM (Memory cell, Forget gate, Input/update gate, Output gate, 3 multiplication, 1 addition, 3 sigmoid, 1 tanh )
+--Bidirection RNN
+--Seq2Seq 
+---Encoder-decoder (static context vector)
+---Attention Model(BRNN encoder, dynamic context vector, Attention layer:FFNN b|w Encoder and decoder wrt to timestamps called attention, attention to specific words, scaling issues with RNNs due increase in parameter, challenging to batch and parallelize training) 
+---Transformer(positional encodings and attention, parallelize better than RNNs)
+---BERT (Transformer at encoder, language understanding)
+---GPT-2 (Transformer at decoder, text generation)
+---BART(BERT+GPT)
