@@ -1,4 +1,4 @@
-#Machine Learning
+# Machine Learning
 -Bias:  statistical error (The error causes one sampling group to be selected more often than other groups included in the experiment.)
 -Variance
 -Underfit
@@ -14,12 +14,12 @@
 -K-Fold cross validation
 -Singular Valur Decomposition
 
-Why do we find eigenvectors?
+* Why do we find eigenvectors?
 Eigenvectors give uncorrelated features of our data, or they define the directions of the new axis onto which we will project the data.
 Here, all eigenvectors are independent and have unit length.
 To reduce the number of features, we need to reduce the number of eigenvectors.
 
-And, what's the use of eigenvalues?
+* And, what's the use of eigenvalues?
 Eigenvalues represent the amount of information retained by each eigenvector (or the variance explained by eigenvectors). They help in deciding which new features to keep and which to drop.
 
 Data Pre-processing:
