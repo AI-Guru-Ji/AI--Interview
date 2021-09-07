@@ -1,0 +1,84 @@
+Natural Language Processing (NLP):
+
+-Libraries:NLTK, Gensim, Spacy, HuggingFace
+-Components
+--Lexical
+--Syntactic
+--Semantic
+--Disclosure Integration
+--Pragmatic
+--Recurrent neural network is called recurrent, because A network is applied for each input element, and output from the previous application is passed to the next one
+
+-Common Terms
+--Corpus
+--Parsing
+--Stopwords
+--Context vector: output of last RNN layer in encoder, representing whole information of input sequence
+--Attention matrix would represent the degree which certain input words play in generation of a given word in the output sequence.
+--Positional encodings: ordering of words ie two close words
+
+-Text processing
+--Tokenization
+--Normalization
+---Stemming
+---Lemmatization
+--POS Tagging
+
+-Word Representation
+--Bag of Words
+--TF-IDF
+--N-grams
+--Word Embedding( Context-free models, generate a single "word embedding" representation for each word in the vocabulary, eg: bank would have the same representation in bank deposit and river bank)
+---Word2Vec
+---Glove
+
+-Architecure
+--Simple RNN
+--GRU (Reset gate, Update gate, Memory Cell, 3 multiplication, 1 addition, 2 sigmoid, 1 tanh)
+--LSTM (Memory cell, Forget gate, Input/update gate, Output gate, 3 multiplication, 1 addition, 3 sigmoid, 1 tanh )
+--Bidirection RNN
+--Seq2Seq 
+---Encoder-decoder (static context vector)
+---Attention Model(BRNN encoder, dynamic context vector, Attention layer:FFNN b|w Encoder and decoder wrt to timestamps called attention, 		attention to specific words, scaling issues with RNNs due increase in parameter, challenging to batch and parallelize training) 
+---Transformer(encoder-decoder architecture, [Encoder: self attention, FFNN], [Decoder: self attention, encoder-decoder attention, FFNN], 		positional encodings and attention, parallelize better than RNNs)
+---BERT (Bidirectional Encoder Representations from Transformers, Google, natural language understanding, Transformer at encoder, Unsupervised, 	 Unlabeled )
+---GPT-2 (Transformer at decoder, text generation)
+---BART (BERT+GPT)
+---XLNet
+
+---------What is BERT--------------------------------------------------------------------------
+-BERT is a method of pre-training language representations, meaning that we train a general-purpose "language understanding" model on a large text corpus, and then use that model for downstream NLP tasks
+-Pre-trained representations can also either be context-free or contextual, and contextual representations can further be unidirectional or bidirectional. 
+-Context-free models such as word2vec or GloVe while Contextual models instead generate a representation of each word that is based on the other words in the sentence. eg: river bank, bank deposit
+
+-Pre-training contextual representations methods:
+1. Unidirectional contextual representations: This means that each word is only contextualized using the words to its left (or right)
+--- Generative Pre-training
+--- ELMo
+--- ULMFit
+
+2. Bidirectional contextual representations
+--- Masked Language Model (MLM): 
+MLM makes it possible to perform bidirectional learning from the text, i.e. it allows the model to learn the 		context of each word from the words appearing both before and after it.
+eg: Input: the man went to the [MASK1] . he bought a [MASK2] of milk.
+    Labels: [MASK1] = store; [MASK2] = gallon
+--- Next Structure Prediction (NSP): 
+The NSP task allows BERT to learn relationships between sentences by predicting if the next sentence in a 		pair is the true next or not. 
+eg: Sentence A: the man went to the store .
+    Sentence B: he bought a gallon of milk .
+    Label: IsNextSentence
+
+--Pre-training: training a model with one task to help it form parameters that can be used in other tasks.
+--Fine-tuning:  fine-tuning is a process that takes a model that has already been trained for one given task and then tunes or tweaks the model to make it perform a second similar task.
+
+--Sentiment Analysis
+---BERT (baseline, Masked Language Model and Next Structure Prediction, 16GB data:books, wikipedia, SOTA in Oct'2018, time:4 days using 4 TPU 		 Pods)
+---RoBERTa (Facebook, Best model, Performance improvement 2-20%, more training time, larger batch size, 160GB data, without NSP, more suitable 		
+for Twitter where most tweets are composed of a single sentence )
+---DistilBERT(5% Performance degradation, faster, 16 GB data,The idea is that once a large neural network has been trained, its full output 
+distributions can be approximated using a smaller network )
+---XLNet (Performance improvement 2-15%, more training time, 113GB data, Bidirectional Transformer with permutationa based modeling, handle dependencies well, work better in longer-run)
+
+Conclusion: Most of the performance improvements (including BERT itself!) are either due to increased data, computation power, or training procedure. 
+While these do have a value of their own — they tend to do a tradeoff between computation and prediction metrics. Fundamental improvements that can increase 
+performance while using fewer data and compute resources are needed.
